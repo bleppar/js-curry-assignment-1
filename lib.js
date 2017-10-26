@@ -22,12 +22,21 @@ const listedPrice =
 /**
  * transform carts into an array of { customer, total }
  */
+const getSum = (acc, ele) => acc + ele
+
 const calculateTotals =
   listings =>
     carts => {
-      // TODO
-    }
-
+      return carts.map( cart => {
+        let total = cart.items.map( x  => listedPrice(listings[listings.findIndex( i => i.name === x)])(x))
+          .reduce(getSum)
+          return { customer: cart.customer, total}
+      }
+    )
+  }
+    
+    
+  
 module.exports = {
   listing,
   cart,
